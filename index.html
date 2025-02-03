@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--    icon-->
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <!--    css files-->
+    <link href="css/init.css" type="text/css" rel="stylesheet">
+    <link href="css/style.css" type="text/css" rel="stylesheet">
+    <!--    title-->
+    <title>Enhancing Sampling Protocol for Point Cloud Classification Against Corruptions</title>
+    <!--    description-->
+    <meta name="Description"
+          content="Official website of the research project 'Enhancing Sampling Protocol for Point Cloud Classification Against Corruptions'.">
+    <!--    keywords-->
+    <meta name="Keywords"
+          content="Chongshou Li, Ping Tang, Xinke Li, Yuheng Liu, Tianrui Li">
+    <script src="https://kit.fontawesome.com/766b4d68b2.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+
+<body>
+
+<div class="paper-info">
+    <div class="paper-title-new" style="font-size: 38px">
+        Enhancing Sampling Protocol for Point Cloud Classification Against Corruptions
+    </div>
+    <div class="paper-authors-new">
+        <div><a href="https://scholar.google.com.sg/citations?user=pQsr70EAAAAJ&hl=en"><b><u>Chongshou Li</u></b></a><sup>1</sup><b>,&nbsp;</b></div>
+        <div><a href="" class="coming-soon"><b><u>Ping Tang</u></b></a><sup>1</sup><b>,&nbsp;</b></div>
+        <div><a href="https://shinke-li.github.io/"><b><u>Xinke Li</u></b></a><sup>2</sup><b>,&nbsp;</b></div>
+        <div><a href="https://yuheng.ink"><b><u>Yuheng Liu</u></b></a><sup>3</sup><b>,&nbsp;</b></div>
+        <div><a href="https://scholar.google.com/citations?hl=en&authuser=1&user=CQ1HneMAAAAJ"><b><u>Tianrui Li</u></b></a><sup>1</sup></div>
+    </div>
+    <div class="paper-institutions" align="center">
+        <div class="paper-sub-institute">
+            <div><sup>1</sup>School of Computing and Artificial Intelligence, Southwest Jiaotong University,&nbsp;
+            <div><sup>2</sup>National University of Singapore,&nbsp;</div>
+            </div><div><sup>3</sup>SWJTU-Leeds Joint School, Southwest Jiaotong University</div>
+        </div>
+        <div class="paper-sub-institute">
+
+        </div>
+    </div>
+
+    <div class="paper-link-group">
+        <a href="https://arxiv.org/abs/2408.12062" class="paper-sub-link" style="width: 100px" target="_blank">
+            <img src="icons/arxiv-logomark-small.svg" style="width: 16px; height: 16px">&nbsp;&nbsp;Arxiv
+        </a>
+<!--        <a href="https://github.com/dhl3d/deep-hierarchical-learning-for-3d-segmentation" class="paper-sub-link" target="_blank" style="width: 100px">-->
+<!--            <i class="fa-brands fa-github"></i>&nbsp;&nbsp;Code-->
+<!--        </a>-->
+    </div>
+
+    <div class="paper-category">
+        <div class="circle-logo">
+            <img src="images/pointsp.png" style="width: 80%; height: 80%">
+        </div>
+        <p class="category-name">Robust Learning</p>
+    </div>
+</div>
+
+<div class="border-box">
+    <div style="height: 1px;" data-width="100%" class="divider-border"></div>
+</div>
+
+<div class="paper-sub-section">
+    <div class="title">
+        ABSTRACT
+    </div>
+<!--    <img src="images/teaser.png" style="width: 40%" class="paper-img-phone">-->
+    <div class="paper-contents">
+        <p>
+            Established sampling protocols for 3D point cloud learning,
+            such as Farthest Point Sampling (FPS) and Fixed Sample Size (FSS),
+            have long been relied upon. However, real-world data often suffer from corruptions,
+            such as sensor noise, which violates the benign data assumption in current protocols.
+            As a result, these protocols are highly vulnerable to noise,
+            posing significant safety risks in critical applications like autonomous driving.
+            To address these issues, we propose an enhanced <u>point</u> cloud <u>s</u>ampling <u>p</u>rotocol, <b><u>PointSP</u></b>,
+            designed to improve robustness against point cloud corruptions.
+            PointSP incorporates key point reweighting to mitigate outlier sensitivity and ensure the selection of representative points.
+            It also introduces a local-global balanced downsampling strategy,
+            which allows for scalable and adaptive sampling while maintaining geometric consistency.
+            Additionally, a lightweight tangent plane interpolation method is used to preserve local geometry while enhancing the density of the point cloud.
+            Unlike learning-based approaches that require additional model training, PointSP is architecture-agnostic,
+            requiring no extra learning or modification to the network. This enables seamless integration into existing pipelines.
+            Extensive experiments on synthetic and real-world corrupted datasets show that PointSP significantly improves the robustness and accuracy of point cloud classification,
+            outperforming state-of-the-art methods across multiple benchmarks.
+        </p>
+    </div>
+</div>
+
+<div class="border-box">
+    <div style="height: 1px;" data-width="100%" class="divider-border"></div>
+</div>
+
+<div class="paper-sub-section">
+    <div class="title" style="padding-bottom: 40px">
+        METHOD
+    </div>
+<!--    <div class="paper-sub-title">-->
+<!--        Architecture of Hierarchical Learning-->
+<!--    </div>-->
+    <img src="images/method-pointsp.png" style="width: 50%" class="paper-img-phone">
+    <div class="paper-contents">
+        <p>
+            PointSP: enhanced protocol of point cloud sampling for robust classification. The existing and conventional protocol used farthest point sampling (FPS) and non-processed points for input.
+            In our protocol, randomized key point sampling and full points resampling (random up & downsampling) are used in training to conduct sampling-based data augmentation. During inference, filtered FPS (FFPS) is implemented to bypass outliers, and an upsampling strategy is used to densify sparse input. We propose the concept of isolation rate, the upsampling by tangent plane interpolation and the local-global balanced downsampling to obtain point weights and resampled points, respectively.
+        </p>
+    </div>
+
+
+</div>
+
+<div class="border-box">
+    <div style="height: 1px;" data-width="100%" class="divider-border"></div>
+</div>
+
+<div class="paper-sub-section">
+    <div class="title" style="padding-bottom: 40px">
+        RESULTS
+    </div>
+
+    <div class="paper-sub-title">
+        Overall Results
+    </div>
+    <img src="images/table1.png" style="width: 20%; margin-bottom: 20px" class="paper-img-phone">
+    <div class="paper-contents">
+        <p>
+            Mean error rates (mERs) for the three corrupted datasets are presented in Table 1. To facilitate a comprehensive comparison, we include multiple baseline models. The results clearly indicate that the proposed PointSP significantly enhances PCT and CurveNet; mERs decrease by approximately 10% across all datasets, with the most substantial improvement observed in PointCloud-C.
+        </p>
+    </div>
+
+    <div class="paper-sub-title" style="margin-top: 40px">
+        Results on ModelNet40-C
+    </div>
+
+    <img src="images/table2.png" style="width: 20%; margin-bottom: 20px" class="paper-img-phone">
+
+    <div class="paper-contents">
+        <p>
+            Extensive evaluations of PointSP on ModelNet40-C utilizing five 3D deep models revealed its superiority. Compared to five enhancement techniques (CutMix-R [Zhang et al., 2022a], CutMix-K [Zhang
+            et al., 2022a], Mixup [Chen et al., 2020], Rsmix [Lee et al.,
+            2021], and PGD [Sun et al., 2021]), PointSP significantly improved all models. Across multiple corruption types, PointSP
+            consistently achieved the lowest error rates: 24.1% for “Density”, 9.5% for “Noise”, and 11.1% for “Transform”, demonstrating robustness. Notably, its unique randomized size sampling in resampling and FFPS in downsampling effectively
+            tackled “Density” and “Noise” corruptions, enhancing resilience and eliminating outliers, respectively. Detailed corruption results are provided in the Appendix.
+        </p>
+    </div>
+
+    <div class="paper-sub-title" style="margin-top: 40px">
+        Results on PointCloud-C and OmniObject-C
+    </div>
+
+    <img src="images/table3.png" style="width: 50%; margin-bottom: 20px" class="paper-img-phone">
+
+    <div class="paper-contents">
+        <p>
+            Table 3 compares the performance of PointSP with data augmentation methods on the PointCloud-C and OmniObject-C datasets. On PointCloud-C, PointSP enhances classification accuracy across various corruption scenarios, outperforming other methods, with the FFPS technique achieving an error rate of 7.5% under additive corruption types due to its effective outlier filtering. However, PointSP does not perform optimally under the "Jitter" corruption, where the PGD strategy excels due to its robust feature learning mechanism. For drop-type corruptions, methods like CutMix and Rsmix demonstrate superior robustness, likely due to their data-mixing strategies. On OmniObject-C, PointSP excels in improving out-of-distribution (OOD) robustness, achieving the lowest mER for CurveNet (57.9%) and the best results for "Jitter" (61.4% mER). It also outperforms other methods on PointNet++ for "Drop-G" and "Add-G" corruptions, and is highly competitive with CutMix-R on PCT. Overall, these results validate PointSP’s effectiveness in enhancing both OOD robustness and generalization. Additional implementation details and results for PointNet and GDANet are available in the Appendix.
+        </p>
+    </div>
+
+
+    <div class="paper-sub-title" style="margin-top: 40px">
+        Results for Part Segmentation
+    </div>
+
+    <img src="images/figure3.png" style="width: 30%; margin-bottom: 20px" class="paper-img-phone">
+
+    <div class="paper-contents">
+        <p>
+            The proposed sampling protocol has been evaluated on a classification task. To demonstrate its broader applicability, we
+            also applied it to part segmentation tasks, which are critical
+            for robotic manipulation, using the ShapeNet-C dataset [Ren
+            et al., 2022]. The results, shown in Figure 3, clearly indicate that the proposed PointSP protocol provides a significant
+            improvement.
+        </p>
+    </div>
+
+
+    <div class="paper-sub-title" style="margin-top: 40px">
+        Isolation Rate
+    </div>
+
+    <img src="images/figure5.png" style="width: 30%; margin-bottom: 20px" class="paper-img-phone">
+
+    <div class="paper-contents">
+        <p>
+            In Figure 5, we visualize the distribution of point-wise isolation rates for three example objects. The proposed rate effectively identifies boundary points and outliers, thereby enhancing subsequent point cloud sampling and improving learning robustness against corruption.
+        </p>
+    </div>
+
+
+    <div class="paper-sub-title" style="margin-top: 40px">
+        Local-geometry-preserved Interpolation
+    </div>
+
+    <img src="images/figure6.png" style="width: 30%; margin-bottom: 20px" class="paper-img-phone">
+
+    <div class="paper-contents">
+        <p>
+            Figure 6 visually compares the results of three upsampling techniques
+            on four example objects. It is evident that both Jitter and
+            SI [Huang et al., 2022] struggle with corrupted data, particularly when it is sparse and non-uniform. In contrast, the
+            proposed LGP method effectively combines completion and
+            uniformity in the upsampling process.
+        </p>
+    </div>
+
+
+    <div class="paper-sub-title" style="margin-top: 40px">
+        Neighborhood Size &nbsp;\(\tilde{k}\)&nbsp;  in Local-global-balanced downsampling
+    </div>
+
+    <img src="images/figure7.png" style="width: 30%; margin-bottom: 20px" class="paper-img-phone">
+
+    <div class="paper-contents">
+        <p>
+            Stochastically determining the sample size is a
+            critical aspect of the resampling protocol. As shown in Figure 7, a smaller \( \tilde{k} \) leads to local drops ( second row), while a
+            larger \( \tilde{k} \) results in more global removals (last row). A stochastic \( \tilde{k} \) would closely mimic real-world corruption, contributing
+            to the robust improvement of the proposed protocol.
+        </p>
+    </div>
+
+
+
+</div>
+
+
+<div class="border-box">
+    <div style="height: 1px;" data-width="100%" class="divider-border"></div>
+</div>
+
+<div class="paper-sub-section">
+    <div class="title" style="padding-bottom: 40px">
+        BibTex
+    </div>
+    <div class="paper-bibtex">
+        <code>
+            @article{li2024enhancingsamplingprotocolrobust,
+                  title={Enhancing Sampling Protocol for Robust Point Cloud Classification},
+                  author={Chongshou Li and Pin Tang and Xinke Li and Yuheng Liu and Tianrui Li},
+                  year={2025},
+                  journal={arXiv preprint arXiv:2408.12062}
+            }
+        </code>
+    </div>
+</div>
+
+<div class="paper-footer">
+    <p>This website was designed and built by <u><a href="https://github.com/PointCloud-Lab" target="_blank">PointCloud-Lab</a></u>.</p>
+    <div class="recording">
+        <a href="https://clustrmaps.com/site/1c462" title="ClustrMaps" style="visibility: hidden"><img src="//www.clustrmaps.com/map_v2.png?d=rZIMP_eCFYBhyDRGelIxASaJs2lfliREcnvymrw5y20&cl=ffffff" style="display: none"></a>
+    </div>
+</div>
+</body>
+</html>
